@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services" xmlns:intf="http://services" xmlns:tns1="http://beans" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://services" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://beans"/>
+   <element name="addAnimal">
+    <complexType>
+     <sequence>
+      <element name="p" type="tns1:Animal"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addAnimalResponse">
+    <complexType>
+     <sequence>
+      <element name="addAnimalReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteAnimal">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteAnimalResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteAnimalReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAnimal">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAnimalResponse">
+    <complexType>
+     <sequence>
+      <element name="getAnimalReturn" type="tns1:Animal"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllAnimals">
+    <complexType/>
+   </element>
+   <element name="getAllAnimalsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllAnimalsReturn" type="tns1:Animal"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://beans" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Animal">
+    <sequence>
+     <element name="age" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteAnimalRequest">
+
+      <wsdl:part element="impl:deleteAnimal" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteAnimalResponse">
+
+      <wsdl:part element="impl:deleteAnimalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAnimalRequest">
+
+      <wsdl:part element="impl:addAnimal" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAnimalRequest">
+
+      <wsdl:part element="impl:getAnimal" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAnimalResponse">
+
+      <wsdl:part element="impl:getAnimalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAnimalsResponse">
+
+      <wsdl:part element="impl:getAllAnimalsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAnimalResponse">
+
+      <wsdl:part element="impl:addAnimalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAnimalsRequest">
+
+      <wsdl:part element="impl:getAllAnimals" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AnimalServiceImpl">
+
+      <wsdl:operation name="addAnimal">
+
+         <wsdl:input message="impl:addAnimalRequest" name="addAnimalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addAnimalResponse" name="addAnimalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteAnimal">
+
+         <wsdl:input message="impl:deleteAnimalRequest" name="deleteAnimalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteAnimalResponse" name="deleteAnimalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAnimal">
+
+         <wsdl:input message="impl:getAnimalRequest" name="getAnimalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAnimalResponse" name="getAnimalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAnimals">
+
+         <wsdl:input message="impl:getAllAnimalsRequest" name="getAllAnimalsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllAnimalsResponse" name="getAllAnimalsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AnimalServiceImplSoapBinding" type="impl:AnimalServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addAnimal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAnimalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAnimalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteAnimal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteAnimalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteAnimalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAnimal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAnimalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAnimalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAnimals">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllAnimalsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllAnimalsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AnimalServiceImplService">
+
+      <wsdl:port binding="impl:AnimalServiceImplSoapBinding" name="AnimalServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/MyFirstWebServices/services/AnimalServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

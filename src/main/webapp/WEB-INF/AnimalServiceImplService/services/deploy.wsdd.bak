@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AnimalServiceImplService WSDL service -->
+
+  <service name="AnimalServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services"/>
+      <parameter name="wsdlServiceElement" value="AnimalServiceImplService"/>
+      <parameter name="schemaQualified" value="http://beans,http://services"/>
+      <parameter name="wsdlServicePort" value="AnimalServiceImpl"/>
+      <parameter name="className" value="services.AnimalServiceImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="AnimalServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addAnimal" qname="operNS:addAnimal" xmlns:operNS="http://services" returnQName="retNS:addAnimalReturn" xmlns:retNS="http://services" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:p" xmlns:pns="http://services" type="tns:Animal" xmlns:tns="http://beans"/>
+      </operation>
+      <operation name="deleteAnimal" qname="operNS:deleteAnimal" xmlns:operNS="http://services" returnQName="retNS:deleteAnimalReturn" xmlns:retNS="http://services" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://services" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAnimal" qname="operNS:getAnimal" xmlns:operNS="http://services" returnQName="retNS:getAnimalReturn" xmlns:retNS="http://services" returnType="rtns:Animal" xmlns:rtns="http://beans" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://services" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllAnimals" qname="operNS:getAllAnimals" xmlns:operNS="http://services" returnQName="retNS:getAllAnimalsReturn" xmlns:retNS="http://services" returnType="rtns:Animal" xmlns:rtns="http://beans" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="addAnimal deleteAnimal getAllAnimals getAnimal"/>
+
+      <typeMapping
+        xmlns:ns="http://beans"
+        qname="ns:Animal"
+        type="java:beans.Animal"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
