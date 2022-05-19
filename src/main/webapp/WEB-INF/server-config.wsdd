@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -34,11 +34,11 @@
    <ns1:parameter qname="ns7:id" type="xsd:int"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="deletePerson getPerson getAllPersons addPerson"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="PersonServiceImpl"/>
-  <ns1:parameter name="className" value="services.PersonServiceImpl"/>
-  <ns1:parameter name="wsdlServicePort" value="PersonServiceImpl"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://beans,http://services"/>
+  <ns1:parameter name="wsdlServicePort" value="PersonServiceImpl"/>
+  <ns1:parameter name="className" value="services.PersonServiceImpl"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://services"/>
   <ns1:parameter name="wsdlServiceElement" value="PersonServiceImplService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Person" xmlns:ns8="http://beans"/>
@@ -52,6 +52,27 @@
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="AnimalServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="addAnimal" qname="ns9:addAnimal" returnQName="ns9:addAnimalReturn" returnType="xsd:boolean" soapAction="" xmlns:ns9="http://services" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:p" type="ns10:Animal" xmlns:ns10="http://beans"/>
+  </ns1:operation>
+  <ns1:operation name="deleteAnimal" qname="ns11:deleteAnimal" returnQName="ns11:deleteAnimalReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://services" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getAnimal" qname="ns12:getAnimal" returnQName="ns12:getAnimalReturn" returnType="ns13:Animal" soapAction="" xmlns:ns12="http://services" xmlns:ns13="http://beans">
+   <ns1:parameter qname="ns12:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAllAnimals" qname="ns14:getAllAnimals" returnQName="ns14:getAllAnimalsReturn" returnType="ns15:Animal" soapAction="" xmlns:ns14="http://services" xmlns:ns15="http://beans"/>
+  <ns1:parameter name="allowedMethods" value="addAnimal deleteAnimal getAllAnimals getAnimal"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="AnimalServiceImpl"/>
+  <ns1:parameter name="className" value="services.AnimalServiceImpl"/>
+  <ns1:parameter name="wsdlServicePort" value="AnimalServiceImpl"/>
+  <ns1:parameter name="schemaQualified" value="http://beans,http://services"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://services"/>
+  <ns1:parameter name="wsdlServiceElement" value="AnimalServiceImplService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:Animal" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Animal" xmlns:ns16="http://beans"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
